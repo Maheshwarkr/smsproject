@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Feedback Form</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #e9ecef; /* Light gray background */
+            color: #495057; /* Dark gray text color */
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            color: #007bff; /* Blue color for the title */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 30px;
+            background: white; /* White background for the form */
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .container:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+        }
+        p {
+            margin: 15px 0;
+            text-align: center; /* Center align messages */
+        }
+        button {
+            background-color: #007bff; /* Blue button */
+            color: white; /* White text on button */
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .message {
+            color: #dc3545; /* Red color for error messages */
+        }
+        .success-message {
+            color: #28a745; /* Green color for success messages */
+        }
+        form {
+            display: flex;
+            flex-direction: column; /* Column layout for form fields */
+        }
+        input, textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ced4da; /* Light border color */
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input:focus, textarea:focus {
+            border-color: #007bff; /* Blue border on focus */
+            outline: none; /* Remove default outline */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>User Feedback Form</h2>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="success-message">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+</body>
+</html>
